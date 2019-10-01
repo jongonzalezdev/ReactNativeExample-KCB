@@ -26,7 +26,7 @@ const reducer = (state = initialState, action = {}) => {
                 isFetching: action.value
             };
 
-        defautl:
+        default:
             return state;
     }
 }

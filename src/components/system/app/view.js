@@ -1,6 +1,8 @@
 import React, {Fragment} from 'react';
 import Routes from '../routes';
 import { YellowBox, StatusBar } from 'react-native';
+import { Provider } from 'react-redux';
+import store from '../../../config/redux';
 
 class App extends React.Component {
 
@@ -11,7 +13,11 @@ class App extends React.Component {
     }
 
     render() {
-        return <Routes />;
+        return ( 
+            <Provider store={store}>
+                <Routes />
+            </Provider>
+        )
     }
 }
     
