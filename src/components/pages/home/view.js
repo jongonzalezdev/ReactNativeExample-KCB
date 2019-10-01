@@ -4,6 +4,7 @@ import styles from './styles';
 import { Actions } from 'react-native-router-flux';
 import * as api from '../../../api';
 import _ from 'lodash';
+import { HouseCell } from '../../molecules';
 
 class Home extends Component {
 
@@ -19,6 +20,7 @@ class Home extends Component {
         try {
             const getHouses = await api.getHouses();
             const houses = _.get(getHouses, 'data.records', []);
+
             this.setState({ houses: houses })
         } catch(e) {
             console.log('getHouses err: ', e);
@@ -31,14 +33,7 @@ class Home extends Component {
         // }).finally(() => {})
     }
 
-    _renderItem = ({ item }) => {
-        const imageDir = _.get(item, 'image_dir')
-        return (
-            <TouchableOpacity style={{flex: 1}}>
-                <Image source={{uri: imageDir}} style={{width: '100%', height: 300}}/>
-            </TouchableOpacity>
-        )
-    }
+    _renderItem = ({ item }) => <HouseCell house={item} onHousePress={house => console.log('house: ', house)} />
 
     render() {
         console.log('this.state.houses: ', this.state.houses);
@@ -47,6 +42,7 @@ class Home extends Component {
         return (
             <SafeAreaView style={styles.container}>
                 <FlatList 
+                    style={styles.list}
                     data={houses} 
                     renderItem={this._renderItem} 
                     keyExtractor={(item, index) => `house-${index}`}

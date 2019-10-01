@@ -5,7 +5,7 @@ import { Home, Characters } from '../../pages';
 const Routes = () => (
     <Router>
         <Stack key="root">
-            <Scene key="Home" component={Home} title={'Casas'}/>
+            <Scene key="Home" component={Home} hideNavBar/>
             <Scene key="Characters" component={Characters} />
         </Stack>
     </Router>
