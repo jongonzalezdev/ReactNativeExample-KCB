@@ -15,7 +15,7 @@ class Home extends Component {
 
     _onHouseTapped = (house) => {
         this.props.updateItem(house);
-        Actions.Characters();
+        Actions.Characters({ title: _.get(house, 'nombre', 'Personajes')});
     }
 
     _renderItem = ({ item }) => <HouseCell house={item} onHousePress={house => this._onHouseTapped(house)} />
